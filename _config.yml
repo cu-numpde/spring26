@@ -5,7 +5,7 @@ title: Numerical Solution of Partial Differential Equations
 author: Jed Brown
 logo: img/cu-numpde.svg
 
-exclude_patterns: [VENV/*, README.md, activities/*, _build.bak/*]
+exclude_patterns: [VENV/*, README.md, activities/*, _build.bak/*, slides.bak/*]
 
 parse:
   myst_enable_extensions:
@@ -32,7 +32,7 @@ bibtex_bibfiles:
 
 # Information about where the book exists on the web
 repository:
-  url: https://github.com/cu-numpde/fall23
+  url: https://github.com/cu-numpde/spring26
   branch: main
 
 # Add GitHub buttons to your book
