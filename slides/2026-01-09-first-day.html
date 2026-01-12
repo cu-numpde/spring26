@@ -63,6 +63,7 @@
     <link rel="icon" href="../_static/cu-numpde-square.svg"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="2026-01-12 Finite Differences" href="2026-01-12-finite-differences.html" />
     <link rel="prev" title="Slides" href="../slides.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -186,6 +187,26 @@
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="../slides.html">Slides</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">2026-01-09 First Day</a></li>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="2026-01-12-finite-differences.html">2026-01-12 Finite Differences</a></li>
 
 
 
@@ -542,7 +563,7 @@ document.write(`
 <section class="tex2jax_ignore mathjax_ignore" id="positionality-who-am-i">
 <h1>Positionality: Who am I?<a class="headerlink" href="#positionality-who-am-i" title="Link to this heading">#</a></h1>
 <ul class="simple">
-<li><p>Jed Brown (he/him); you can call me Jed</p></li>
+<li><p>Jed Brown (he/they); you can call me Jed</p></li>
 <li><p>Math + Physics undergrad, MS Math, <a class="reference external" href="http://Dr.Sc">Dr.Sc</a>. Environmental Engineering (Computational Glaciology)</p></li>
 <li><p>Postdoc and staff at Argonne National Laboratory (DOE Office of Science)</p></li>
 <li><p>CU since 2015</p></li>
@@ -581,8 +602,8 @@ document.write(`
 <li><p>population dynamics</p></li>
 </ul>
 <p>Find <span class="math notranslate nohighlight">\(u\)</span> such that</p>
-<div class="amsmath math notranslate nohighlight" id="equation-eea7ee03-99da-4525-8edd-40904c46b9e8">
-<span class="eqno">(1)<a class="headerlink" href="#equation-eea7ee03-99da-4525-8edd-40904c46b9e8" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-4452b734-5984-4494-ace8-ef5824d65205">
+<span class="eqno">(1)<a class="headerlink" href="#equation-4452b734-5984-4494-ace8-ef5824d65205" title="Permalink to this equation">#</a></span>\[\begin{align}
 -\nabla\cdot\big(\kappa(\mathbf x) \nabla u(\mathbf x)\big) &amp;= f(\mathbf x) &amp; \mathbf x &amp;\in \Omega \\
 u(\mathbf x) &amp;= g(\mathbf x) &amp; \mathbf x &amp;\in \Gamma_D \subset \partial\Omega \\
 \kappa(\mathbf x) \nabla u(\mathbf x) \cdot \mathbf{\hat n}(\mathbf x) &amp;= h(\mathbf x) &amp; \mathbf x &amp;\in \Gamma_N \subset\partial\Omega
@@ -595,8 +616,8 @@ u(\mathbf x) &amp;= g(\mathbf x) &amp; \mathbf x &amp;\in \Gamma_D \subset \part
 <section class="tex2jax_ignore mathjax_ignore" id="what-does-it-mean-to-discretize-a-pde">
 <h1>What does it mean to discretize a PDE?<a class="headerlink" href="#what-does-it-mean-to-discretize-a-pde" title="Link to this heading">#</a></h1>
 <p>Find <span class="math notranslate nohighlight">\(u\)</span> such that</p>
-<div class="amsmath math notranslate nohighlight" id="equation-e6d33d4e-61a8-4399-8acd-bb92414b9366">
-<span class="eqno">(2)<a class="headerlink" href="#equation-e6d33d4e-61a8-4399-8acd-bb92414b9366" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-656dd129-3dd3-4359-8987-a91996089747">
+<span class="eqno">(2)<a class="headerlink" href="#equation-656dd129-3dd3-4359-8987-a91996089747" title="Permalink to this equation">#</a></span>\[\begin{align}
 -\nabla\cdot\big(\kappa(\mathbf x) \nabla u(\mathbf x)\big) &amp;= f(\mathbf x) &amp; \mathbf x &amp;\in \Omega \\
 u(\mathbf x) &amp;= g(\mathbf x) &amp; \mathbf x &amp;\in \Gamma_D \subset \partial\Omega \\
 \nabla u(\mathbf x) \cdot \mathbf{\hat n}(\mathbf x) &amp;= h(\mathbf x) &amp; \mathbf x &amp;\in \Gamma_N \subset\partial\Omega
@@ -726,7 +747,10 @@ u(\mathbf x) &amp;= g(\mathbf x) &amp; \mathbf x &amp;\in \Gamma_D \subset \part
 <h1>What skills should they have?<a class="headerlink" href="#what-skills-should-they-have" title="Link to this heading">#</a></h1>
 <p>Breakout groups: pick one role and make a list of essential and nice-to-have skills, plus at least one question. Pick one member to report out.</p>
 <ul class="simple">
-<li><p>…</p></li>
+<li><p>Fluency in math/calculus/functional analysis/linear algebra</p></li>
+<li><p>Coding proficiency</p></li>
+<li><p>Interdisciplinary communication</p></li>
+<li><p>Domain knowledge</p></li>
 </ul>
 <ul class="simple">
 <li><p>…</p></li>
@@ -1098,6 +1122,15 @@ Limited to simpler models.</p>
         <p class="prev-next-subtitle">previous</p>
         <p class="prev-next-title">Slides</p>
       </div>
+    </a>
+    <a class="right-next"
+       href="2026-01-12-finite-differences.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">2026-01-12 Finite Differences</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
                 </footer>
