@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Welcome &#8212; Numerical Solution of Partial Differential Equations</title>
+    <title>Tips &#8212; Numerical Solution of Partial Differential Equations</title>
   
   
   
@@ -57,13 +57,12 @@
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'index';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'tips';</script>
     <link rel="icon" href="_static/cu-numpde-square.svg"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Syllabus" href="syllabus.html" />
+    <link rel="next" title="Slides" href="slides.html" />
+    <link rel="prev" title="Syllabus" href="syllabus.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -126,8 +125,6 @@
       
       
       
-        
-      
       <div class="bd-sidebar-primary bd-sidebar">
         
 
@@ -146,7 +143,7 @@
     
   
 
-<a class="navbar-brand logo" href="#">
+<a class="navbar-brand logo" href="index.html">
   
   
   
@@ -177,15 +174,15 @@
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
-            <li class="toctree-l1 current active">
-                <a class="reference internal" href="#">
+            <li class="toctree-l1">
+                <a class="reference internal" href="index.html">
                     Welcome
                 </a>
             </li>
         </ul>
-        <ul class="nav bd-sidenav">
+        <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="syllabus.html">Syllabus</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tips.html">Tips</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Tips</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="slides.html">Slides</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="slides/2026-01-09-first-day.html">2026-01-09 First Day</a></li>
 
@@ -308,7 +305,7 @@
       
       
       
-      <li><a href="https://github.com/cu-numpde/spring26/issues/new?title=Issue%20on%20page%20%2Findex.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/cu-numpde/spring26/issues/new?title=Issue%20on%20page%20%2Ftips.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -338,7 +335,7 @@
       
       
       
-      <li><a href="_sources/index.md" target="_blank"
+      <li><a href="_sources/tips.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -409,7 +406,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -420,11 +419,32 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Welcome</h1>
+    <h1>Tips</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#authenticating-to-github-on-https-coding-csel-io">Authenticating to GitHub on https://coding.csel.io</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#log-in">1. Log in</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#open-a-terminal">2. Open a terminal</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#run-gh-auth-login">3. Run <code class="docutils literal notranslate"><span class="pre">gh</span> <span class="pre">auth</span> <span class="pre">login</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#open-https-github-com-login-device">4. Open https://github.com/login/device</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#clone-with-the-git-sidebar">5. Clone with the Git sidebar</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installing-ijulia-locally">Installing IJulia locally</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#install-julia">1. Install Julia</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#install-ijulia">2. Install IJulia</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#install-plots-and-any-other-necessary-packages">3. Install Plots and any other necessary packages</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -434,49 +454,95 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="welcome">
-<h1>Welcome<a class="headerlink" href="#welcome" title="Link to this heading">#</a></h1>
-<p>Welcome to <strong>CSCI-5636: Numerical Solution of Partial Differential Equations</strong></p>
-<div class="admonition-logistics admonition">
-<p class="admonition-title">Logistics</p>
-<ul class="simple">
-<li><p>Meeting Time: MWF 2:30-3:20 in ECCR 110</p></li>
-</ul>
+  <section class="tex2jax_ignore mathjax_ignore" id="tips">
+<h1>Tips<a class="headerlink" href="#tips" title="Link to this heading">#</a></h1>
+<section id="authenticating-to-github-on-https-coding-csel-io">
+<h2>Authenticating to GitHub on <a class="reference external" href="https://coding.csel.io">https://coding.csel.io</a><a class="headerlink" href="#authenticating-to-github-on-https-coding-csel-io" title="Link to this heading">#</a></h2>
+<p>This is a one-time process to use the Jupyter sidebar (or <code class="docutils literal notranslate"><span class="pre">gh</span></code> client) to clone repositories and interact with GitHub.</p>
+<section id="log-in">
+<h3>1. Log in<a class="headerlink" href="#log-in" title="Link to this heading">#</a></h3>
+<p>Open <a class="reference external" href="https://coding.csel.io">https://coding.csel.io</a> and select the CSCI-3656/Numerical Computation tile.</p>
+</section>
+<section id="open-a-terminal">
+<h3>2. Open a terminal<a class="headerlink" href="#open-a-terminal" title="Link to this heading">#</a></h3>
+<p><img alt="" src="img/coding.csel.io-terminal.png" /></p>
+</section>
+<section id="run-gh-auth-login">
+<h3>3. Run <code class="docutils literal notranslate"><span class="pre">gh</span> <span class="pre">auth</span> <span class="pre">login</span></code><a class="headerlink" href="#run-gh-auth-login" title="Link to this heading">#</a></h3>
+<p>At the terminal, enter <code class="docutils literal notranslate"><span class="pre">gh</span> <span class="pre">auth</span> <span class="pre">login</span></code> and accept defaults for all questions. When it prints an 8-character one-time code, press enter one more time. The session should look like this:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">jovyan@jupyter-jeka2967:~$ </span>gh<span class="w"> </span>auth<span class="w"> </span>login
+<span class="go">? What account do you want to log into? GitHub.com</span>
+<span class="go">? What is your preferred protocol for Git operations? HTTPS</span>
+<span class="go">? How would you like to authenticate GitHub CLI? Login with a web browser</span>
+
+<span class="go">! First copy your one-time code: 54E0-8759</span>
+<span class="go">Press Enter to open github.com in your browser... </span>
+<span class="go">/usr/bin/xdg-open: 882: www-browser: not found</span>
+<span class="go">/usr/bin/xdg-open: 882: links2: not found</span>
+<span class="go">/usr/bin/xdg-open: 882: elinks: not found</span>
+<span class="go">/usr/bin/xdg-open: 882: links: not found</span>
+<span class="go">/usr/bin/xdg-open: 882: lynx: not found</span>
+<span class="go">/usr/bin/xdg-open: 882: w3m: not found</span>
+<span class="go">xdg-open: no method available for opening &#39;https://github.com/login/device&#39;</span>
+<span class="go">! Failed opening a web browser at https://github.com/login/device</span>
+<span class="go">  exit status 3</span>
+<span class="go">  Please try entering the URL in your browser manually</span>
+</pre></div>
 </div>
-<div class="admonition-resources admonition">
-<p class="admonition-title">Resources</p>
-<ul class="simple">
-<li><p><a class="reference external" href="http://www.siam.org/students/memberships.php">SIAM Membership</a> is free for CU students (30% discount on SIAM books)</p></li>
-<li><p>Lecture series</p>
-<ul>
-<li><p><a class="reference external" href="https://www.math.colostate.edu/~bangerth/videos.html">Bangerth, <em>Finite element methods in scientific computing course</em></a> (focus on deal.II finite element library and C++)</p></li>
-</ul>
-</li>
-<li><p>Books</p>
-<ul>
-<li><p><a class="reference external" href="https://fncbook.com">Driscoll and Braun, <strong>Fundamentals of Numerical Computation</strong></a> (free, in Julia with demo notebooks)</p></li>
-<li><p><a class="reference external" href="http://www.ulaff.net/downloads.html">Myers, Van de Geijn, Van de Geijn, <em>Linear Algebra: Foundations to Frontiers</em></a> (free PDF and videos)</p></li>
-<li><p><a class="reference external" href="https://faculty.washington.edu/rjl/fdmbook/">LeVeque, <em>Finite Difference Methods for Ordinary and Partial Differential Equations</em></a> (CU students can <a class="reference external" href="http://epubs.siam.org/doi/book/10.1137/1.9780898717839">download free from SIAM</a>)</p></li>
-<li><p><a class="reference external" href="https://depts.washington.edu/clawpack/book.html">LeVeque, <em>Finite Volume Methods for Hyperbolic Problems</em></a> and the <a class="reference external" href="http://www.clawpack.org/">Clawpack software</a>.</p></li>
-<li><p><a class="reference external" href="https://link.springer.com/book/10.1007%2Fb79761#toc">Toro, <em>Riemann Solvers and Numerical Methods for Fluid Dynamics</em></a>. (CU students can download free)</p></li>
-<li><p><a class="reference external" href="https://link.springer.com/book/10.1007%2F978-3-642-23099-8">Logg, Mardal, Wells, <em>Automated Solution of Differential Equations by the Finite Element Method (The FEniCS Book)</em></a>. (<a class="reference external" href="https://fenicsproject.org/book/">free download</a>)</p></li>
-<li><p><a class="reference external" href="https://people.maths.ox.ac.uk/trefethen/spectral.html">Trefethen, <em>Spectral Methods in MATLAB</em></a>. (CU students can <a class="reference external" href="http://epubs.siam.org/doi/book/10.1137/1.9780898719598">download free from SIAM</a>)</p></li>
-<li><p><a class="reference external" href="https://doi.org/10.1093/acprof:oso/9780199678792.001.0001">Elman, Silvester, Wathen, <em>Finite Elements and Fast Iterative Solvers with Applications in Incompressible Fluid Dynamics</em></a> (CU students <a class="reference external" href="http://libraries.colorado.edu/record=b7826912~S3">click “Full Text” to read online</a>)</p></li>
-</ul>
-</li>
-<li><p>Papers</p>
-<ul>
-<li><p><a class="reference external" href="https://doi.org/10.1115/1.1436090">Roache, <em>Code Verification by the Method of Manufactured Solutions</em></a></p></li>
-<li><p><a class="reference external" href="https://dl.acm.org/doi/10.1145/2484762.2484782">Turk, <em>Scaling a code in the human dimension</em></a> <a class="reference external" href="https://arxiv.org/pdf/1301.7064.pdf">arXiv</a></p></li>
-<li><p>Nachtigal, Reddy, Trefethen, <a class="reference download internal" download="" href="_downloads/724a644af751de859b23a0e3e8cfcebe/NachtigalReddyTrefethen-HowFastAreNonsymmetricMatrixIterations-1992.pdf"><code class="xref download docutils literal notranslate"><span class="pre">How</span> <span class="pre">fast</span> <span class="pre">are</span> <span class="pre">nonsymmetric</span> <span class="pre">matrix</span> <span class="pre">iterations</span></code></a></p></li>
-<li><p>Greenbaum, Pták, Strakoš, <a class="reference download internal" download="" href="_downloads/89519b904a425b8eb17694760fabba14/GreenbaumPtakStrakos-AnyNonincreasingConvergenceCurvePossibleGMRES-1996.pdf"><code class="xref download docutils literal notranslate"><span class="pre">Any</span> <span class="pre">nonincreasing</span> <span class="pre">convergence</span> <span class="pre">curve</span> <span class="pre">is</span> <span class="pre">possible</span> <span class="pre">for</span> <span class="pre">GMRES</span></code></a></p></li>
-<li><p>Embree, <a class="reference download internal" download="" href="_downloads/877dfa29a1daedd00447fda3e7eb206d/Embree-TheTortoiseAndTheHareRestartGMRES-2003.pdf"><code class="xref download docutils literal notranslate"><span class="pre">The</span> <span class="pre">tortoise</span> <span class="pre">and</span> <span class="pre">the</span> <span class="pre">hare</span> <span class="pre">restart</span> <span class="pre">GMRES</span></code></a></p></li>
-</ul>
-</li>
-</ul>
+</section>
+<section id="open-https-github-com-login-device">
+<h3>4. Open <a class="github reference external" href="https://github.com/login/device">login/device</a><a class="headerlink" href="#open-https-github-com-login-device" title="Link to this heading">#</a></h3>
+<p>In a new browser tab, open <a class="github reference external" href="https://github.com/login/device">login/device</a> and enter the 8-character code. If configured, it may also ask for your 2-factor authentication (app on your phone). The browser should say “Congratulations, you’re all set!” and the terminal session should complete.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">✓ Authentication complete.</span>
+<span class="go">- gh config set -h github.com git_protocol https</span>
+<span class="go">✓ Configured git protocol</span>
+<span class="go">✓ Logged in as jedbrown</span>
+</pre></div>
 </div>
-<div class="toctree-wrapper compound">
+</section>
+<section id="clone-with-the-git-sidebar">
+<h3>5. Clone with the Git sidebar<a class="headerlink" href="#clone-with-the-git-sidebar" title="Link to this heading">#</a></h3>
+<p>You can now clone with the Git sidebar or <code class="docutils literal notranslate"><span class="pre">gh</span> <span class="pre">repo</span> <span class="pre">clone</span></code>.
+<img alt="" src="img/coding.csel.io-git-clone.png" /></p>
+</section>
+</section>
+<section id="installing-ijulia-locally">
+<h2>Installing IJulia locally<a class="headerlink" href="#installing-ijulia-locally" title="Link to this heading">#</a></h2>
+<section id="install-julia">
+<h3>1. Install Julia<a class="headerlink" href="#install-julia" title="Link to this heading">#</a></h3>
+<p>If you use a package manager, you can get Julia that way, otherwise install <code class="docutils literal notranslate"><span class="pre">juliaup</span></code> (the Julia version manager/dispatcher) by following the <a class="reference external" href="https://julialang.org/install/">official install instructions</a>.</p>
+</section>
+<section id="install-ijulia">
+<h3>2. Install IJulia<a class="headerlink" href="#install-ijulia" title="Link to this heading">#</a></h3>
+<p><a class="reference external" href="https://github.com/JuliaLang/IJulia.jl">IJulia</a> includes the Jupyter system (which is implemented in Python) and connects it to the Julia “kernel”.
+You can install it by running <code class="docutils literal notranslate"><span class="pre">julia</span></code>, which will give you a Julia prompt:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">julia</span><span class="o">&gt;</span>
+</pre></div>
 </div>
+<p>Press the <code class="docutils literal notranslate"><span class="pre">]</span></code> key to enter the packaging prompt, which will look like:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="nd">@v1</span><span class="mf">.11</span><span class="p">)</span> <span class="n">pkg</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>Enter <code class="docutils literal notranslate"><span class="pre">add</span> <span class="pre">IJulia</span></code> to install:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="nd">@v1</span><span class="mf">.11</span><span class="p">)</span> <span class="n">pkg</span><span class="o">&gt;</span> <span class="n">add</span> <span class="n">IJulia</span>
+</pre></div>
+</div>
+<p>If this completes with errors, you’re done. Pressing the backspace key will return you to a standard <code class="docutils literal notranslate"><span class="pre">julia&gt;</span></code> prompt, and you can enter the notebook using</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">julia</span><span class="o">&gt;</span> <span class="n">using</span> <span class="n">IJulia</span>
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">notebook</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>This will open a browser window.</p>
+</section>
+<section id="install-plots-and-any-other-necessary-packages">
+<h3>3. Install Plots and any other necessary packages<a class="headerlink" href="#install-plots-and-any-other-necessary-packages" title="Link to this heading">#</a></h3>
+<p>Our work will sometimes use community packages that are not shipped with the Julia base system.
+The first of these is <a class="reference external" href="https://docs.juliaplots.org/">Plots</a>, which you can install with</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="nd">@v1</span><span class="mf">.11</span><span class="p">)</span> <span class="n">pkg</span><span class="o">&gt;</span> <span class="n">add</span> <span class="n">Plots</span>
+</pre></div>
+</div>
+</section>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -509,12 +575,21 @@ document.write(`
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
-    <a class="right-next"
+    <a class="left-prev"
        href="syllabus.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Syllabus</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="slides.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Syllabus</p>
+        <p class="prev-next-title">Slides</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -524,6 +599,34 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#authenticating-to-github-on-https-coding-csel-io">Authenticating to GitHub on https://coding.csel.io</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#log-in">1. Log in</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#open-a-terminal">2. Open a terminal</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#run-gh-auth-login">3. Run <code class="docutils literal notranslate"><span class="pre">gh</span> <span class="pre">auth</span> <span class="pre">login</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#open-https-github-com-login-device">4. Open https://github.com/login/device</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#clone-with-the-git-sidebar">5. Clone with the Git sidebar</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installing-ijulia-locally">Installing IJulia locally</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#install-julia">1. Install Julia</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#install-ijulia">2. Install IJulia</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#install-plots-and-any-other-necessary-packages">3. Install Plots and any other necessary packages</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
