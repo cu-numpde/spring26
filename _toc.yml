@@ -5,6 +5,7 @@ format: jb-book
 root: index
 chapters:
 - file: syllabus
+- file: tips
 - file: slides
   sections:
   - file: slides/2026-01-09-first-day.ipynb
