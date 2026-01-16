@@ -11,3 +11,4 @@ chapters:
   - file: slides/2026-01-09-first-day.ipynb
   - file: slides/2026-01-12-finite-differences.ipynb
   - file: slides/2026-01-14-fd-solutions.ipynb
+  - file: slides/2026-01-16-fd-verification.ipynb
