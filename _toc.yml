@@ -12,5 +12,8 @@ chapters:
   - file: slides/2026-01-12-finite-differences.ipynb
   - file: slides/2026-01-14-fd-solutions.ipynb
   - file: slides/2026-01-16-fd-verification.ipynb
-  - file: slides/2026-01-19-fourier.ipynb
-  - file: slides/2026-01-21-chebyshev.ipynb
+  - file: slides/2026-01-21-mms-bcs.ipynb
+  - file: slides/2026-01-23-fourier.ipynb
+  - file: slides/2026-01-26-chebyshev.ipynb
+  - file: slides/2026-01-28-coefficients.ipynb
+  - file: slides/2026-01-30-advection.ipynb
