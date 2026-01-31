@@ -30,7 +30,7 @@
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
-    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
@@ -50,7 +50,7 @@
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="../_static/togglebutton.js?v=1ae7504c"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="../_static/design-tabs.js?v=f930bc37"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
@@ -63,6 +63,7 @@
     <link rel="icon" href="../_static/cu-numpde-square.svg"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="2026-01-21 MMS and BCs" href="2026-01-21-mms-bcs.html" />
     <link rel="prev" title="2026-01-14 FD Solutions" href="2026-01-14-fd-solutions.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -246,6 +247,73 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="2026-01-21-mms-bcs.html">2026-01-21 MMS and BCs</a></li>
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="2026-01-23-fourier.html">2026-01-23 Fourier and conditioning</a></li>
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="2026-01-26-chebyshev.html">2026-01-26 Chebyshev collocation</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="2026-01-28-coefficients.html">2026-01-28 Variable coefficients</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="2026-01-30-advection.html">2026-01-30 Advection</a></li>
 
 
 
@@ -1067,8 +1135,8 @@ When building a matrix system for the BVP, we can implement this boundary condit
 \[p(x) = c_0 + c_1 x + c_2 x^2 + \dotsb.\]</div>
 
 What is</p>
-<div class="amsmath math notranslate nohighlight" id="equation-6cebbcaf-72f7-413a-903a-3f956f66b473">
-<span class="eqno">(6)<a class="headerlink" href="#equation-6cebbcaf-72f7-413a-903a-3f956f66b473" title="Permalink to this equation">#</a></span>\[\begin{align} p(0) &amp;= c_0 \\
+<div class="amsmath math notranslate nohighlight" id="equation-0b0acf2e-4160-4a55-8a42-4aa696be3ea3">
+<span class="eqno">(6)<a class="headerlink" href="#equation-0b0acf2e-4160-4a55-8a42-4aa696be3ea3" title="Permalink to this equation">#</a></span>\[\begin{align} p(0) &amp;= c_0 \\
 p'(0) &amp;= c_1 \\ 
 p''(0) &amp;= c_2 \cdot 2\\
 p^{(k)}(0) &amp;= c_k \cdot k! .
@@ -1341,8 +1409,8 @@ after dividing by 2 and moving the boundary term to the right hand side.</p>
 <h1>Fourier analysis of stencils<a class="headerlink" href="#fourier-analysis-of-stencils" title="Link to this heading">#</a></h1>
 <p>Consider the plane waves <span class="math notranslate nohighlight">\(\phi(x, \theta) = e^{i\theta x}\)</span>.</p>
 <p>Sample <span class="math notranslate nohighlight">\(\phi\)</span> on a discrete grid <span class="math notranslate nohighlight">\(x = \mathbb Z\)</span> and apply the stencil</p>
-<div class="amsmath math notranslate nohighlight" id="equation-495437e2-517c-434e-8767-8e10a5456f93">
-<span class="eqno">(7)<a class="headerlink" href="#equation-495437e2-517c-434e-8767-8e10a5456f93" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-5290ca7b-d465-42f0-9c2d-335bf961c70e">
+<span class="eqno">(7)<a class="headerlink" href="#equation-5290ca7b-d465-42f0-9c2d-335bf961c70e" title="Permalink to this equation">#</a></span>\[\begin{align}
 S \phi(x, \theta) &amp;= s_{-1} \phi(x-1, \theta) + s_{0} \phi(x, \theta) + s_1 \phi(x+1,\theta) \\
 &amp;= \Big( s_{-1} e^{-i\theta} + s_0 + s_{1} e^{i\theta} \Big) \phi(x, \theta)
 \end{align}\]</div>
@@ -1403,6 +1471,15 @@ What is the symbol of the continuous second derivative?</p>
         <p class="prev-next-subtitle">previous</p>
         <p class="prev-next-title">2026-01-14 FD Solutions</p>
       </div>
+    </a>
+    <a class="right-next"
+       href="2026-01-21-mms-bcs.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">2026-01-21 MMS and BCs</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
                 </footer>

@@ -30,7 +30,7 @@
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
-    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
@@ -50,7 +50,7 @@
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="../_static/togglebutton.js?v=1ae7504c"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="../_static/design-tabs.js?v=f930bc37"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
@@ -184,6 +184,7 @@
         </ul>
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../syllabus.html">Syllabus</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tips.html">Tips</a></li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="../slides.html">Slides</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="2026-01-09-first-day.html">2026-01-09 First Day</a></li>
 
@@ -222,6 +223,97 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="2026-01-16-fd-verification.html">2026-01-16 FD Verification</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="2026-01-21-mms-bcs.html">2026-01-21 MMS and BCs</a></li>
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="2026-01-23-fourier.html">2026-01-23 Fourier and conditioning</a></li>
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="2026-01-26-chebyshev.html">2026-01-26 Chebyshev collocation</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="2026-01-28-coefficients.html">2026-01-28 Variable coefficients</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="2026-01-30-advection.html">2026-01-30 Advection</a></li>
 
 
 
@@ -569,8 +661,8 @@ Limited to simpler models.</p>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="consider-the-boundary-value-problem-find-u">
 <h1>Consider the boundary value problem: find <span class="math notranslate nohighlight">\(u\)</span>:<a class="headerlink" href="#consider-the-boundary-value-problem-find-u" title="Link to this heading">#</a></h1>
-<div class="amsmath math notranslate nohighlight" id="equation-dc1baabe-9b69-497e-b666-c7db12d47fff">
-<span class="eqno">(3)<a class="headerlink" href="#equation-dc1baabe-9b69-497e-b666-c7db12d47fff" title="Permalink to this equation">#</a></span>\[\begin{gather} -\frac{d^2 u}{dx^2} = f(x) \quad x \in \Omega = (-1,1) \\
+<div class="amsmath math notranslate nohighlight" id="equation-6b64c9bb-a080-4ddc-9d38-10391aab873e">
+<span class="eqno">(3)<a class="headerlink" href="#equation-6b64c9bb-a080-4ddc-9d38-10391aab873e" title="Permalink to this equation">#</a></span>\[\begin{gather} -\frac{d^2 u}{dx^2} = f(x) \quad x \in \Omega = (-1,1) \\
 u(-1) = a \quad \frac{du}{dx}(1) = b .
 \end{gather}\]</div>
 <p>We say</p>
@@ -590,8 +682,8 @@ u(-1) = a \quad \frac{du}{dx}(1) = b .
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="finite-difference-collocation-approach-to-solve-u">
 <h1>Finite Difference/collocation approach to solve <span class="math notranslate nohighlight">\(u\)</span>:<a class="headerlink" href="#finite-difference-collocation-approach-to-solve-u" title="Link to this heading">#</a></h1>
-<div class="amsmath math notranslate nohighlight" id="equation-647d19bd-8d79-4610-b621-3862a1cf0c1b">
-<span class="eqno">(4)<a class="headerlink" href="#equation-647d19bd-8d79-4610-b621-3862a1cf0c1b" title="Permalink to this equation">#</a></span>\[\begin{gather} -\frac{d^2 u}{dx^2} = f(x) \quad x \in \Omega = (-1,1) \\
+<div class="amsmath math notranslate nohighlight" id="equation-76738086-a942-4fe1-8f2d-8471f5ebc640">
+<span class="eqno">(4)<a class="headerlink" href="#equation-76738086-a942-4fe1-8f2d-8471f5ebc640" title="Permalink to this equation">#</a></span>\[\begin{gather} -\frac{d^2 u}{dx^2} = f(x) \quad x \in \Omega = (-1,1) \\
 u(-1) = a \quad \frac{du}{dx}(1) = b .
 \end{gather}\]</div>
 <ul class="simple">
