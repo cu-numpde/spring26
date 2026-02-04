@@ -17,3 +17,5 @@ chapters:
   - file: slides/2026-01-26-chebyshev.ipynb
   - file: slides/2026-01-28-coefficients.ipynb
   - file: slides/2026-01-30-advection.ipynb
+  - file: slides/2026-02-02-sparsity.ipynb
+  - file: slides/2026-02-04-nonlinear.ipynb
