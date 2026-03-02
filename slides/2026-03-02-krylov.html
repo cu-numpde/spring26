@@ -1,0 +1,1191 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>2026-03-02 Krylov and preconditioning &#8212; Numerical Solution of Partial Differential Equations</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=1ae7504c"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'slides/2026-03-02-krylov';</script>
+    <link rel="icon" href="../_static/cu-numpde-square.svg"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="2026-02-27 Iterative Solvers" href="2026-02-27-iterative.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/cu-numpde.svg" class="logo__image only-light" alt="Numerical Solution of Partial Differential Equations - Home"/>
+    <script>document.write(`<img src="../_static/cu-numpde.svg" class="logo__image only-dark" alt="Numerical Solution of Partial Differential Equations - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    Welcome
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../syllabus.html">Syllabus</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tips.html">Tips</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../slides.html">Slides</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="2026-01-09-first-day.html">2026-01-09 First Day</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="2026-01-12-finite-differences.html">2026-01-12 Finite Differences</a></li>
+
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="2026-01-14-fd-solutions.html">2026-01-14 FD Solutions</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="2026-01-16-fd-verification.html">2026-01-16 FD Verification</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="2026-01-21-mms-bcs.html">2026-01-21 MMS and BCs</a></li>
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="2026-01-23-fourier.html">2026-01-23 Fourier and conditioning</a></li>
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="2026-01-26-chebyshev.html">2026-01-26 Chebyshev collocation</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="2026-01-28-coefficients.html">2026-01-28 Variable coefficients</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="2026-01-30-advection.html">2026-01-30 Advection</a></li>
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="2026-02-02-sparsity.html">2026-02-02 Sparsity and solvers</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="2026-02-04-nonlinear.html">2026-02-04 Nonlinear solvers</a></li>
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="2026-02-06-differentiation.html">2026-02-06 Differentiation</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="2026-02-09-transient.html">2026-02-11 Transient</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="2026-02-13-stiffness.html">2026-02-13 Stiffness</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="2026-02-16-runge-kutta.html">2026-02-16 Runge-Kutta</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="2026-02-18-adaptivity.html">2026-02-18 Adaptivity</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="2026-02-20-2d.html">2026-02-20 2D Advection-diffusion and waves</a></li>
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="2026-02-23-factorization.html">2026-02-23 Factorization</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="2026-02-25-linear-solvers.html">2026-02-25 Linear Solvers</a></li>
+
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="2026-02-27-iterative.html">2026-02-27 Iterative Solvers</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">2026-03-02 Krylov and preconditioning</a></li>
+
+
+
+
+
+
+
+
+
+
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li>
+<button onclick="initThebeSBT()"
+  class="btn btn-sm btn-launch-thebe dropdown-item"
+  title="Launch Thebe"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="btn__text-container">Live Code</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/cu-numpde/spring26" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/cu-numpde/spring26/issues/new?title=Issue%20on%20page%20%2Fslides/2026-03-02-krylov.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/slides/2026-03-02-krylov.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>2026-03-02 Krylov and preconditioning</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">2026-03-02 Krylov and preconditioning</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#last-time">Last time</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#today">Today</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#monic-polynomials-small-on-the-spectrum">Monic polynomials small on the spectrum</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#preconditioning">Preconditioning</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#krylov-subspaces">Krylov subspaces</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#arnoldi-iteration">Arnoldi iteration</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#aside-conditioning-of-arnoldi-process">Aside: Conditioning of Arnoldi process</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#gmres">GMRES</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#notes">Notes</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#more-notes-on-gmres">More notes on GMRES</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#experiments-in-petsc">Experiments in PETSc</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#simple-preconditioners">Simple preconditioners</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jacobi-pc-type-jacobi">Jacobi <code class="docutils literal notranslate"><span class="pre">-pc_type</span> <span class="pre">jacobi</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gauss-seidel-pc-type-sor">Gauss-Seidel <code class="docutils literal notranslate"><span class="pre">-pc_type</span> <span class="pre">sor</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#over-relaxation">Over-relaxation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#run-p-laplacian-example">Run p-Laplacian example</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#experiments">Experiments</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#symmetric-problems">Symmetric problems</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lanczos-iteration-like-gmres-for-symmetric-problems">Lanczos iteration: like GMRES for symmetric problems</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conjugate-gradients-changing-the-norm">Conjugate Gradients: changing the norm</a></li>
+</ul>
+</li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="krylov-and-preconditioning">
+<h1>2026-03-02 Krylov and preconditioning<a class="headerlink" href="#krylov-and-preconditioning" title="Link to this heading">#</a></h1>
+<section id="last-time">
+<h2>Last time<a class="headerlink" href="#last-time" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Classical iterative methods</p></li>
+<li><p>Concept of preconditioning</p></li>
+</ul>
+</section>
+<section id="today">
+<h2>Today<a class="headerlink" href="#today" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Krylov methods (focus on GMRES)</p></li>
+<li><p>PETSc experiments</p></li>
+<li><p>Simple preconditioners</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">using</span><span class="w"> </span><span class="n">Plots</span>
+<span class="n">default</span><span class="p">(</span><span class="n">linewidth</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="k">using</span><span class="w"> </span><span class="n">LinearAlgebra</span>
+<span class="k">using</span><span class="w"> </span><span class="n">SparseArrays</span>
+
+<span class="k">function</span><span class="w"> </span><span class="n">my_spy</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<span class="w">    </span><span class="n">cmax</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">norm</span><span class="p">(</span><span class="n">vec</span><span class="p">(</span><span class="n">A</span><span class="p">),</span><span class="w"> </span><span class="nb">Inf</span><span class="p">)</span>
+<span class="w">    </span><span class="n">s</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">max</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">ceil</span><span class="p">(</span><span class="mi">120</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">size</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">)))</span>
+<span class="w">    </span><span class="n">spy</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="w"> </span><span class="n">marker</span><span class="o">=</span><span class="p">(</span><span class="ss">:square</span><span class="p">,</span><span class="w"> </span><span class="n">s</span><span class="p">),</span><span class="w"> </span><span class="n">c</span><span class="o">=</span><span class="ss">:diverging_rainbow_bgymr_45_85_c67_n256</span><span class="p">,</span><span class="w"> </span><span class="n">clims</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="n">cmax</span><span class="p">,</span><span class="w"> </span><span class="n">cmax</span><span class="p">))</span>
+<span class="k">end</span>
+
+<span class="k">function</span><span class="w"> </span><span class="n">advdiff_matrix</span><span class="p">(</span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="n">kappa</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">wind</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">])</span>
+<span class="w">    </span><span class="n">h</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span>
+<span class="w">    </span><span class="n">rows</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">Vector</span><span class="p">{</span><span class="kt">Int64</span><span class="p">}()</span>
+<span class="w">    </span><span class="n">cols</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">Vector</span><span class="p">{</span><span class="kt">Int64</span><span class="p">}()</span>
+<span class="w">    </span><span class="n">vals</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">Vector</span><span class="p">{</span><span class="kt">Float64</span><span class="p">}()</span>
+<span class="w">    </span><span class="n">idx</span><span class="p">((</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="p">),)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">n</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">j</span>
+<span class="w">    </span><span class="n">in_domain</span><span class="p">((</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="p">),)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">n</span>
+<span class="w">    </span><span class="n">stencil_advect</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="o">-</span><span class="n">wind</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="o">-</span><span class="n">wind</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">wind</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="n">wind</span><span class="p">[</span><span class="mi">2</span><span class="p">]]</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">h</span>
+<span class="w">    </span><span class="n">stencil_diffuse</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">kappa</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">h</span><span class="o">^</span><span class="mi">2</span>
+<span class="w">    </span><span class="n">stencil</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">stencil_advect</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">stencil_diffuse</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="mi">1</span><span class="o">:</span><span class="n">n</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="mi">1</span><span class="o">:</span><span class="n">n</span>
+<span class="w">            </span><span class="n">neighbors</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[(</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">)]</span>
+<span class="w">            </span><span class="n">mask</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">in_domain</span><span class="o">.</span><span class="p">(</span><span class="n">neighbors</span><span class="p">)</span>
+<span class="w">            </span><span class="n">append!</span><span class="p">(</span><span class="n">rows</span><span class="p">,</span><span class="w"> </span><span class="n">idx</span><span class="o">.</span><span class="p">(</span><span class="n">repeat</span><span class="p">([(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">)],</span><span class="w"> </span><span class="mi">5</span><span class="p">))[</span><span class="n">mask</span><span class="p">])</span>
+<span class="w">            </span><span class="n">append!</span><span class="p">(</span><span class="n">cols</span><span class="p">,</span><span class="w"> </span><span class="n">idx</span><span class="o">.</span><span class="p">(</span><span class="n">neighbors</span><span class="p">)[</span><span class="n">mask</span><span class="p">])</span>
+<span class="w">            </span><span class="n">append!</span><span class="p">(</span><span class="n">vals</span><span class="p">,</span><span class="w"> </span><span class="n">stencil</span><span class="p">[</span><span class="n">mask</span><span class="p">])</span>
+<span class="w">        </span><span class="k">end</span>
+<span class="w">    </span><span class="k">end</span>
+<span class="w">    </span><span class="n">sparse</span><span class="p">(</span><span class="n">rows</span><span class="p">,</span><span class="w"> </span><span class="n">cols</span><span class="p">,</span><span class="w"> </span><span class="n">vals</span><span class="p">)</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>advdiff_matrix (generic function with 1 method)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="monic-polynomials-small-on-the-spectrum">
+<h1>Monic polynomials small on the spectrum<a class="headerlink" href="#monic-polynomials-small-on-the-spectrum" title="Link to this heading">#</a></h1>
+<p>Equivalently to finding <span class="math notranslate nohighlight">\(\omega\)</span> such that <span class="math notranslate nohighlight">\(\lVert I - \omega A \rVert\)</span> is minimized, we may seek a monic polynomial <span class="math notranslate nohighlight">\(p(z) = 1 - \omega z\)</span> that minimizes</p>
+<div class="math notranslate nohighlight">
+\[ \max_{\lambda \in \sigma(A)} \lvert p(\lambda) \rvert . \]</div>
+<p>This concept can be extended to higher degree polynomials, which is essentially what Krylov methods do (discovering the polynomial adaptively, weighted by the right hand side).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">omega</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">.007</span>
+<span class="n">A</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">advdiff_matrix</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="nd">@show</span><span class="w"> </span><span class="n">cond</span><span class="p">(</span><span class="kt">Matrix</span><span class="p">(</span><span class="n">A</span><span class="p">))</span>
+<span class="n">ev</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">eigvals</span><span class="p">(</span><span class="kt">Matrix</span><span class="p">(</span><span class="n">A</span><span class="p">))</span>
+<span class="n">scatter</span><span class="p">(</span><span class="n">real</span><span class="o">.</span><span class="p">(</span><span class="n">ev</span><span class="p">),</span><span class="w"> </span><span class="n">zero</span><span class="o">.</span><span class="p">(</span><span class="n">ev</span><span class="p">))</span>
+<span class="n">plot!</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">omega</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="o">^</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cond(Matrix(A)) = 48.37415007870825
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output text_html"><img src="data:image/png;base64,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" /></div></div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="preconditioning">
+<h1>Preconditioning<a class="headerlink" href="#preconditioning" title="Link to this heading">#</a></h1>
+<p>Preconditioning is the act of creating an “affordable” operation “<span class="math notranslate nohighlight">\(P^{-1}\)</span>” such that <span class="math notranslate nohighlight">\(P^{-1} A\)</span> (or <span class="math notranslate nohighlight">\(A P^{-1}\)</span>) is is well-conditoned or otherwise has a “nice” spectrum.  We then solve the system</p>
+<div class="math notranslate nohighlight">
+\[ P^{-1} A x = P^{-1} b \quad \text{or}\quad A P^{-1} \underbrace{(P x)}_y = b \]</div>
+<p>in which case the convergence rate depends on the spectrum of the iteration matrix
+<div class="math notranslate nohighlight">
+\[ I - \omega P^{-1} A . \]</div>
+</p>
+<ul class="simple">
+<li><p>The preconditioner must be applied on each iteration.</p></li>
+<li><p>It is <em>not</em> merely about finding a good initial guess.</p></li>
+</ul>
+<p>There are two complementary techniques necessary for efficient iterative methods:</p>
+<ul class="simple">
+<li><p>“accelerators” or Krylov methods, which use orthogonality to adaptively converge faster than Richardson</p></li>
+<li><p>preconditioners that improve the spectrum of the preconditioned operator</p></li>
+</ul>
+<p>Although there is ongoing research in Krylov methods and they are immensely useful, I would say preconditioning is 90% of the game for practical applications, particularly as a research area.</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="krylov-subspaces">
+<h1>Krylov subspaces<a class="headerlink" href="#krylov-subspaces" title="Link to this heading">#</a></h1>
+<p>All matrix iterations work with approximations in a <em>Krylov subspace</em>, which has the form</p>
+<div class="math notranslate nohighlight">
+\[ K_n = \big[ b \big| Ab \big| A^2 b \big| \dotsm \big| A^{n-1} b \big] . \]</div>
+<p>This matrix is horribly ill-conditioned and cannot stably be computed as written.  Instead, we seek an orthogonal basis <span class="math notranslate nohighlight">\(Q_n\)</span> that spans the same space as <span class="math notranslate nohighlight">\(K_n\)</span>.  We could write this as a factorization</p>
+<div class="math notranslate nohighlight">
+\[ K_n = Q_n R_n \]</div>
+<p>where the first column <span class="math notranslate nohighlight">\(q_0 = b / \lVert b \rVert\)</span>.  The <span class="math notranslate nohighlight">\(R_n\)</span> is unnecessary and hopelessly ill-conditioned, so a slightly different procedure is used.</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="arnoldi-iteration">
+<h1>Arnoldi iteration<a class="headerlink" href="#arnoldi-iteration" title="Link to this heading">#</a></h1>
+<p>The Arnoldi iteration applies orthogonal similarity transformations to reduce <span class="math notranslate nohighlight">\(A\)</span> to <a class="reference external" href="https://en.wikipedia.org/wiki/Hessenberg_matrix">Hessenberg form</a>, starting from a vector <span class="math notranslate nohighlight">\(q_0 = b\)</span>,</p>
+<div class="math notranslate nohighlight">
+\[ A = Q H Q^* . \]</div>
+<p>Let’s multiply on the right by <span class="math notranslate nohighlight">\(Q\)</span> and examine the first <span class="math notranslate nohighlight">\(n\)</span> columns,</p>
+<div class="math notranslate nohighlight">
+\[ A Q_n = Q_{n+1} H_n \]</div>
+<p>where <span class="math notranslate nohighlight">\(H_n\)</span> is an <span class="math notranslate nohighlight">\((n+1) \times n\)</span> Hessenberg matrix.</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="aside-conditioning-of-arnoldi-process">
+<h1>Aside: Conditioning of Arnoldi process<a class="headerlink" href="#aside-conditioning-of-arnoldi-process" title="Link to this heading">#</a></h1>
+<p>The Arnoldi process is well-conditioned because <span class="math notranslate nohighlight">\(Q\)</span> is orthogonal and</p>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned} \lVert H_n \rVert \le \lVert Q_{n+1}^* \rVert \lVert A \rVert \lVert Q_n \rVert \le \lVert A \rVert $$.\\For a lower bound, we have\\$$ \sigma_{\min}(A)^2 \le x^* A^* A x \end{aligned}\end{align} \]</div>
+<p>for all <span class="math notranslate nohighlight">\(x\)</span> of norm 1.  It must also be true for any <span class="math notranslate nohighlight">\(x = Q_n y\)</span> where <span class="math notranslate nohighlight">\(\lVert y\rVert = 1\)</span>, thus</p>
+<div class="math notranslate nohighlight">
+\[ \sigma_{\min}(A)^2 \le y^* Q_n^* A^* A Q_n y = y^* H_n^* Q_{n+1}^* Q_{n+1} H_n y = y^* H_n^* H_n y . \]</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="gmres">
+<h1>GMRES<a class="headerlink" href="#gmres" title="Link to this heading">#</a></h1>
+<div class="math notranslate nohighlight">
+\[ A Q_n = Q_{n+1} H_n \]</div>
+<p>GMRES (Generalized Minimum Residual) minimizes
+<div class="math notranslate nohighlight">
+\[ \lVert A x - b \rVert \]</div>
+
+over the subspace <span class="math notranslate nohighlight">\(Q_n\)</span>.  I.e., <span class="math notranslate nohighlight">\(x = Q_n y\)</span> for some <span class="math notranslate nohighlight">\(y\)</span>.  By the Arnoldi recurrence, this is equivalent to
+<div class="math notranslate nohighlight">
+\[ \lVert Q_{n+1} H_n y - b \lVert \]</div>
+
+which can be solved by minimizing
+<div class="math notranslate nohighlight">
+\[ \lVert H_n y - Q_{n+1}^* b \rVert . \]</div>
+
+Since <span class="math notranslate nohighlight">\(q_0 = b/\lVert b \lVert\)</span>, the least squares problem is to minimize
+<div class="math notranslate nohighlight">
+\[ \Big\lVert H_n y - \lVert b \rVert e_0 \Big\rVert . \]</div>
+
+The solution of this least squares problem is achieved by incrementally updating a <span class="math notranslate nohighlight">\(QR\)</span> factorization of <span class="math notranslate nohighlight">\(H_n\)</span>.</p>
+<section id="notes">
+<h2>Notes<a class="headerlink" href="#notes" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>The solution <span class="math notranslate nohighlight">\(x_n\)</span> constructed by GMRES at iteration <span class="math notranslate nohighlight">\(n\)</span> is not explicitly available.  If a solution is needed, it must be constructed by solving the <span class="math notranslate nohighlight">\((n+1)\times n\)</span> least squares problem and forming the solution as a linear combination of the <span class="math notranslate nohighlight">\(n\)</span> vectors <span class="math notranslate nohighlight">\(Q_n\)</span>.  The leading cost is <span class="math notranslate nohighlight">\(2mn\)</span> where <span class="math notranslate nohighlight">\(m \gg n\)</span>.</p></li>
+<li><p>The residual vector <span class="math notranslate nohighlight">\(r_n = A x_n - b\)</span> is not explicitly available in GMRES.  To compute it, first build the solution <span class="math notranslate nohighlight">\(x_n\)</span> as above.</p></li>
+<li><p>GMRES minimizes the 2-norm of the residual <span class="math notranslate nohighlight">\(\lVert r_n \rVert\)</span> which is equivalent to the <span class="math notranslate nohighlight">\(A^* A\)</span> norm of the error <span class="math notranslate nohighlight">\(\lVert x_n - x_* \rVert_{A^* A}\)</span>.</p></li>
+</ul>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="more-notes-on-gmres">
+<h1>More notes on GMRES<a class="headerlink" href="#more-notes-on-gmres" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li><p>GMRES needs to store the full <span class="math notranslate nohighlight">\(Q_n\)</span>, which is unaffordable for large <span class="math notranslate nohighlight">\(n\)</span> (many iterations).  The standard solution is to choose a “restart” <span class="math notranslate nohighlight">\(k\)</span> and to discard <span class="math notranslate nohighlight">\(Q_n\)</span> and start over with an initial guess <span class="math notranslate nohighlight">\(x_k\)</span> after each <span class="math notranslate nohighlight">\(k\)</span> iterations.  This algorithm is called GMRES(k).  PETSc’s default solver is GMRES(30) and the restart can be controlled using the run-time option <code class="docutils literal notranslate"><span class="pre">-ksp_gmres_restart</span></code>.</p></li>
+<li><p>Most implementations of GMRES use classical Gram-Schmidt because it is much faster in parallel (one reduction per iteration instead of <span class="math notranslate nohighlight">\(n\)</span> reductions per iteration).  The PETSc option <code class="docutils literal notranslate"><span class="pre">-ksp_gmres_modifiedgramschmidt</span></code> can be used when you suspect that classical Gram-Schmidt may be causing instability.</p></li>
+<li><p>There is a very similar (and older) algorithm called GCR that maintains <span class="math notranslate nohighlight">\(x_n\)</span> and <span class="math notranslate nohighlight">\(r_n\)</span>.  This is useful, for example, if a convergence tolerance needs to inspect individual entries.  GCR requires <span class="math notranslate nohighlight">\(2n\)</span> vectors instead of <span class="math notranslate nohighlight">\(n\)</span> vectors, and can tolerate a nonlinear preconditioner.  FGMRES is a newer algorithm with similar properties to GCR.</p></li>
+</ul>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="experiments-in-petsc">
+<h1>Experiments in <a class="reference external" href="https://petsc.org">PETSc</a><a class="headerlink" href="#experiments-in-petsc" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li><p>PETSc = Portable Extensible Toolkit for Scientific computing</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">./configure</span></code>, <code class="docutils literal notranslate"><span class="pre">make</span></code></p>
+<ul>
+<li><p>Depends on BLAS and LAPACK (default system or package manager)</p>
+<ul>
+<li><p>or <code class="docutils literal notranslate"><span class="pre">./configure</span> <span class="pre">--download-f2cblaslapack</span> <span class="pre">--download-blis</span></code></p></li>
+</ul>
+</li>
+<li><p>Depends on MPI for parallelism (package manager)</p>
+<ul>
+<li><p>or <code class="docutils literal notranslate"><span class="pre">./configure</span> <span class="pre">--download-mpich</span></code> (or <code class="docutils literal notranslate"><span class="pre">--download-openmpi</span></code>)</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">run</span> <span class="pre">-it</span> <span class="pre">--rm</span> <span class="pre">jedbrown/petsc</span></code></p></li>
+<li><p>Lots of examples (mostly C and Fortran, some Python)</p></li>
+<li><p>Experimental bindings in Rust, Julia</p></li>
+<li><p>We’ll use <code class="docutils literal notranslate"><span class="pre">src/snes/tutorials/ex15.c</span></code></p>
+<ul>
+<li><p>“p-Bratu”: combines p-Laplacian with Bratu nonlinearity
+<div class="math notranslate nohighlight">
+\[ -\nabla\cdot\big(\kappa(\nabla u) \nabla u\big) - \lambda e^u = f \]</div>
+</p></li>
+<li><p>Newton solver with Krylov on each iteration</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="simple-preconditioners">
+<h1>Simple preconditioners<a class="headerlink" href="#simple-preconditioners" title="Link to this heading">#</a></h1>
+<section id="jacobi-pc-type-jacobi">
+<h2>Jacobi <code class="docutils literal notranslate"><span class="pre">-pc_type</span> <span class="pre">jacobi</span></code><a class="headerlink" href="#jacobi-pc-type-jacobi" title="Link to this heading">#</a></h2>
+<div class="math notranslate nohighlight">
+\[ P_{\text{Jacobi}}^{-1} = D^{-1} \]</div>
+<p>where <span class="math notranslate nohighlight">\(D\)</span> is the diagonal of <span class="math notranslate nohighlight">\(A\)</span>.</p>
+</section>
+<section id="gauss-seidel-pc-type-sor">
+<h2>Gauss-Seidel <code class="docutils literal notranslate"><span class="pre">-pc_type</span> <span class="pre">sor</span></code><a class="headerlink" href="#gauss-seidel-pc-type-sor" title="Link to this heading">#</a></h2>
+<div class="math notranslate nohighlight">
+\[ P_{GS}^{-1} = (L+D)^{-1} \]</div>
+<p>where <span class="math notranslate nohighlight">\(L\)</span> is the (strictly) lower triangular part of <span class="math notranslate nohighlight">\(A\)</span>.  The upper triangular part may be used instead, or a symmetric form
+<div class="math notranslate nohighlight">
+\[ P_{SGS}^{-1} = (L+U)^{-1} A \Big( I - (L+D)^{-1} \Big) . \]</div>
+</p>
+<section id="over-relaxation">
+<h3>Over-relaxation<a class="headerlink" href="#over-relaxation" title="Link to this heading">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">-pc_sor_omega</span> <span class="pre">1.</span></code> is default (Gauss-Seidel)</p>
+</section>
+</section>
+<section id="run-p-laplacian-example">
+<h2>Run p-Laplacian example<a class="headerlink" href="#run-p-laplacian-example" title="Link to this heading">#</a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span><span class="nb">cd</span><span class="w"> </span>src/snes/tutorials
+<span class="gp">$ </span>make<span class="w"> </span>ex15
+<span class="gp">$ </span>./ex15<span class="w"> </span>-da_refine<span class="w"> </span><span class="m">2</span><span class="w"> </span>-dm_view
+<span class="gp">$ </span>./ex15<span class="w"> </span>-ksp_monitor<span class="w"> </span>-pc_type<span class="w"> </span>jacobi
+<span class="gp">$ </span>./ex15<span class="w"> </span>-snes_view
+</pre></div>
+</div>
+</section>
+<section id="experiments">
+<h2>Experiments<a class="headerlink" href="#experiments" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>How does iteration count vary under grid refinement?</p></li>
+<li><p>How sensitive is it to parameters</p>
+<ul>
+<li><p>p-Laplacian <code class="docutils literal notranslate"><span class="pre">-p</span></code> <span class="math notranslate nohighlight">\(&gt; 1\)</span> and <code class="docutils literal notranslate"><span class="pre">-epsilon</span></code> <span class="math notranslate nohighlight">\(&gt; 0\)</span></p></li>
+<li><p>Bratu <code class="docutils literal notranslate"><span class="pre">-lambda</span></code> <span class="math notranslate nohighlight">\(&lt; 6.8\)</span></p></li>
+</ul>
+</li>
+<li><p>How sensitive to <code class="docutils literal notranslate"><span class="pre">-ksp_gmres_restart</span></code>?</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-ksp_monitor_true_residual</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-ksp_view_eigenvalues</span></code></p></li>
+</ul>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="symmetric-problems">
+<h1>Symmetric problems<a class="headerlink" href="#symmetric-problems" title="Link to this heading">#</a></h1>
+<section id="lanczos-iteration-like-gmres-for-symmetric-problems">
+<h2>Lanczos iteration: like GMRES for symmetric problems<a class="headerlink" href="#lanczos-iteration-like-gmres-for-symmetric-problems" title="Link to this heading">#</a></h2>
+<p>If <span class="math notranslate nohighlight">\(A\)</span> is symmetric, then <span class="math notranslate nohighlight">\(H = Q^T A Q\)</span> is also symmetric.  Since <span class="math notranslate nohighlight">\(H\)</span> is Hessenberg, this means <span class="math notranslate nohighlight">\(H\)</span> is tridiagonal.  Instead of storing <span class="math notranslate nohighlight">\(Q_n\)</span>, it is sufficient to store only the last two columns since the iteration satisfies a 3-term recurrence.  The analog of GMRES for the symmetric case is called MINRES and is also useful for solving symmetric indefinite problems.</p>
+</section>
+<section id="conjugate-gradients-changing-the-norm">
+<h2>Conjugate Gradients: changing the norm<a class="headerlink" href="#conjugate-gradients-changing-the-norm" title="Link to this heading">#</a></h2>
+<p>Instead of minimizing the <span class="math notranslate nohighlight">\(A^T A\)</span> norm of the error, the Conjugate Gradient method minimizes the <span class="math notranslate nohighlight">\(A\)</span> norm of the error.  For <span class="math notranslate nohighlight">\(A\)</span> to induce a norm, it must be symmetric positive definite.  <a class="reference external" href="http://www.cs.cmu.edu/%7Equake-papers/painless-conjugate-gradient.pdf">Jeremy Shewchuck’s guide to CG</a> is an excellent resource.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "cu-numpde/spring26",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "julia-1.12"
+        },
+        kernelOptions: {
+            name: "julia-1.12",
+            path: "./slides"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'julia-1.12'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="2026-02-27-iterative.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">2026-02-27 Iterative Solvers</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">2026-03-02 Krylov and preconditioning</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#last-time">Last time</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#today">Today</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#monic-polynomials-small-on-the-spectrum">Monic polynomials small on the spectrum</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#preconditioning">Preconditioning</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#krylov-subspaces">Krylov subspaces</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#arnoldi-iteration">Arnoldi iteration</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#aside-conditioning-of-arnoldi-process">Aside: Conditioning of Arnoldi process</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#gmres">GMRES</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#notes">Notes</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#more-notes-on-gmres">More notes on GMRES</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#experiments-in-petsc">Experiments in PETSc</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#simple-preconditioners">Simple preconditioners</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jacobi-pc-type-jacobi">Jacobi <code class="docutils literal notranslate"><span class="pre">-pc_type</span> <span class="pre">jacobi</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gauss-seidel-pc-type-sor">Gauss-Seidel <code class="docutils literal notranslate"><span class="pre">-pc_type</span> <span class="pre">sor</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#over-relaxation">Over-relaxation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#run-p-laplacian-example">Run p-Laplacian example</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#experiments">Experiments</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#symmetric-problems">Symmetric problems</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lanczos-iteration-like-gmres-for-symmetric-problems">Lanczos iteration: like GMRES for symmetric problems</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conjugate-gradients-changing-the-norm">Conjugate Gradients: changing the norm</a></li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Jed Brown
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
