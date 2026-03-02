@@ -23,3 +23,9 @@ chapters:
   - file: slides/2026-02-09-transient.ipynb
   - file: slides/2026-02-13-stiffness.ipynb
   - file: slides/2026-02-16-runge-kutta.ipynb
+  - file: slides/2026-02-18-adaptivity.ipynb
+  - file: slides/2026-02-20-2d.ipynb
+  - file: slides/2026-02-23-factorization.ipynb
+  - file: slides/2026-02-25-linear-solvers.ipynb
+  - file: slides/2026-02-27-iterative.ipynb
+  - file: slides/2026-03-02-krylov.ipynb
