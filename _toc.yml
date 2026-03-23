@@ -32,3 +32,6 @@ chapters:
   - file: slides/2026-03-04-preconditioning.ipynb
   - file: slides/2026-03-06-licensing.ipynb
   - file: slides/2026-03-09-multigrid.ipynb
+  - file: slides/2026-03-11-amg.ipynb
+  - file: slides/2026-03-13-galerkin.ipynb
+  - file: slides/2026-03-23-fem.ipynb
