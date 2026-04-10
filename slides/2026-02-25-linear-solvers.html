@@ -500,6 +500,164 @@
 
 
 
+<li class="toctree-l2"><a class="reference internal" href="2026-03-02-krylov.html">2026-03-02 Krylov and preconditioning</a></li>
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="2026-03-04-preconditioning.html">2026-03-04 Preconditioning</a></li>
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="2026-03-06-licensing.html">2026-03-06 Licensing and communities</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="2026-03-09-multigrid.html">2026-03-09 Multigrid</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="2026-03-11-amg.html">2026-03-11 AMG</a></li>
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="2026-03-13-galerkin.html">2026-03-13 Galerkin methods</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="2026-03-23-fem.html">2026-03-23 Finite Elements</a></li>
+
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="2026-03-25-applied-fe.html">2026-03-25 Applied Finite Elements</a></li>
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="2026-03-27-solids.html">2026-03-27 Solid Mechanics</a></li>
+
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="2026-03-30-ratel.html">2026-03-30 Ratel for Solid Mechanics</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="2026-04-03-ratel-hands-on.html">2026-04-03 Ratel Hands-on</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="2026-04-08-honee.html">2026-04-06 Honee</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="2026-04-10-finite-volume.html">2026-04-10 Finite Volume</a></li>
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -873,11 +1031,11 @@ document.write(`
 <h2><span class="math notranslate nohighlight">\(LU = A\)</span><a class="headerlink" href="#lu-a" title="Link to this heading">#</a></h2>
 <p>Given a <span class="math notranslate nohighlight">\(2\times 2\)</span> block matrix, the algorithm proceeds as
 \begin{split}</p>
-<div class="amsmath math notranslate nohighlight" id="equation-68c37c4b-7c30-4f9b-b00a-cead0b35399e">
-<span class="eqno">(28)<a class="headerlink" href="#equation-68c37c4b-7c30-4f9b-b00a-cead0b35399e" title="Permalink to this equation">#</a></span>\[\begin{bmatrix} A &amp; B \\ C &amp; D \end{bmatrix} &amp;=
+<div class="amsmath math notranslate nohighlight" id="equation-fb04f5a6-4eaa-4cfb-ad3e-ff26437c1ec5">
+<span class="eqno">(28)<a class="headerlink" href="#equation-fb04f5a6-4eaa-4cfb-ad3e-ff26437c1ec5" title="Permalink to this equation">#</a></span>\[\begin{bmatrix} A &amp; B \\ C &amp; D \end{bmatrix} &amp;=
 \begin{bmatrix} L_A &amp; \\ C U_A^{-1} &amp; 1 \end{bmatrix}\]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-f6ceb629-7e28-49c4-82dc-e529900df06e">
-<span class="eqno">(29)<a class="headerlink" href="#equation-f6ceb629-7e28-49c4-82dc-e529900df06e" title="Permalink to this equation">#</a></span>\[\begin{bmatrix} U_A &amp; L_A^{-1} B \\ &amp; S \end{bmatrix}\]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-d5a403f2-c367-47fb-b520-19af05b3c152">
+<span class="eqno">(29)<a class="headerlink" href="#equation-d5a403f2-c367-47fb-b520-19af05b3c152" title="Permalink to this equation">#</a></span>\[\begin{bmatrix} U_A &amp; L_A^{-1} B \\ &amp; S \end{bmatrix}\]</div>
 <p>\end{split}
 where <span class="math notranslate nohighlight">\(L_A U_A = A\)</span> and
 <div class="math notranslate nohighlight">
@@ -887,11 +1045,11 @@ where <span class="math notranslate nohighlight">\(L_A U_A = A\)</span> and
 <section id="cholesky-l-l-t-a">
 <h2>Cholesky <span class="math notranslate nohighlight">\(L L^T = A\)</span><a class="headerlink" href="#cholesky-l-l-t-a" title="Link to this heading">#</a></h2>
 <p>\begin{split}</p>
-<div class="amsmath math notranslate nohighlight" id="equation-bc5c686d-2bbc-402e-ad73-6fd81c6cab2b">
-<span class="eqno">(30)<a class="headerlink" href="#equation-bc5c686d-2bbc-402e-ad73-6fd81c6cab2b" title="Permalink to this equation">#</a></span>\[\begin{bmatrix} A &amp; B^T \\ B &amp; D \end{bmatrix} &amp;=
+<div class="amsmath math notranslate nohighlight" id="equation-412bcbb1-b864-4355-b0aa-9ac2930a7ff2">
+<span class="eqno">(30)<a class="headerlink" href="#equation-412bcbb1-b864-4355-b0aa-9ac2930a7ff2" title="Permalink to this equation">#</a></span>\[\begin{bmatrix} A &amp; B^T \\ B &amp; D \end{bmatrix} &amp;=
 \begin{bmatrix} L_A &amp; \\ B L_A^{-T} &amp; 1 \end{bmatrix}\]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-3ebd7f0b-3943-40de-a5ff-f1cc503a4096">
-<span class="eqno">(31)<a class="headerlink" href="#equation-3ebd7f0b-3943-40de-a5ff-f1cc503a4096" title="Permalink to this equation">#</a></span>\[\begin{bmatrix} L_A^T &amp; L_A^{-1} B^T \\ &amp; S \end{bmatrix}\]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-46020651-a273-4bf1-928c-9ed1642cbc0a">
+<span class="eqno">(31)<a class="headerlink" href="#equation-46020651-a273-4bf1-928c-9ed1642cbc0a" title="Permalink to this equation">#</a></span>\[\begin{bmatrix} L_A^T &amp; L_A^{-1} B^T \\ &amp; S \end{bmatrix}\]</div>
 <p>\end{split}
 where <span class="math notranslate nohighlight">\(L_A L_A^T = A\)</span> and
 <div class="math notranslate nohighlight">

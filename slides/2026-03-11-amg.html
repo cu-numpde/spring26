@@ -582,6 +582,90 @@
 
 
 
+<li class="toctree-l2"><a class="reference internal" href="2026-03-25-applied-fe.html">2026-03-25 Applied Finite Elements</a></li>
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="2026-03-27-solids.html">2026-03-27 Solid Mechanics</a></li>
+
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="2026-03-30-ratel.html">2026-03-30 Ratel for Solid Mechanics</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="2026-04-03-ratel-hands-on.html">2026-04-03 Ratel Hands-on</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="2026-04-08-honee.html">2026-04-06 Honee</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="2026-04-10-finite-volume.html">2026-04-10 Finite Volume</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </ul>
 </details></li>
 </ul>
@@ -1233,8 +1317,8 @@ The iteration matrix is thus
 <blockquote>
 <div><p>it’s the product rule backwards</p>
 </div></blockquote>
-<div class="amsmath math notranslate nohighlight" id="equation-aa89e258-62e3-4300-ba9e-da78a59bf542">
-<span class="eqno">(33)<a class="headerlink" href="#equation-aa89e258-62e3-4300-ba9e-da78a59bf542" title="Permalink to this equation">#</a></span>\[\begin{align} \int_a^b d(uv) &amp;= \int_a^b u dv + \int_a^b v du \\
+<div class="amsmath math notranslate nohighlight" id="equation-225cb07d-cb1d-4e71-9e28-64b1bdbdbb3a">
+<span class="eqno">(33)<a class="headerlink" href="#equation-225cb07d-cb1d-4e71-9e28-64b1bdbdbb3a" title="Permalink to this equation">#</a></span>\[\begin{align} \int_a^b d(uv) &amp;= \int_a^b u dv + \int_a^b v du \\
 (uv)_a^b &amp;= \int_a^b u dv + \int_a^b v du \\
 \int_a^b u dv &amp;= (uv)_a^b - \int_a^b v du
 \end{align}\]</div>
@@ -1244,8 +1328,8 @@ The iteration matrix is thus
 </section>
 <section id="multiple-dimensions">
 <h2>Multiple dimensions<a class="headerlink" href="#multiple-dimensions" title="Link to this heading">#</a></h2>
-<div class="amsmath math notranslate nohighlight" id="equation-2b2b3a05-5475-4b51-8a4a-dd64b533f9c0">
-<span class="eqno">(34)<a class="headerlink" href="#equation-2b2b3a05-5475-4b51-8a4a-dd64b533f9c0" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-17ece14f-3c68-4dba-9ddb-f748ba1e286f">
+<span class="eqno">(34)<a class="headerlink" href="#equation-17ece14f-3c68-4dba-9ddb-f748ba1e286f" title="Permalink to this equation">#</a></span>\[\begin{align}
 \int_\Omega v \nabla\cdot \mathbf f = -\int_\Omega \nabla v \cdot \mathbf f + \int_{\partial \Omega} v \mathbf f \cdot \mathbf n
 \end{align}\]</div>
 </section>
@@ -1259,8 +1343,8 @@ The iteration matrix is thus
 <ul class="simple">
 <li><p>multiply by a test function and integrate by parts</p></li>
 </ul>
-<div class="amsmath math notranslate nohighlight" id="equation-00bc9712-d8a4-4c48-909f-816402ee455d">
-<span class="eqno">(35)<a class="headerlink" href="#equation-00bc9712-d8a4-4c48-909f-816402ee455d" title="Permalink to this equation">#</a></span>\[\begin{align} -\int_\Omega v \nabla\cdot(\kappa \nabla u) = 0, \forall v \\
+<div class="amsmath math notranslate nohighlight" id="equation-81cf2c0a-bc7d-4e4e-9f70-a369134a236a">
+<span class="eqno">(35)<a class="headerlink" href="#equation-81cf2c0a-bc7d-4e4e-9f70-a369134a236a" title="Permalink to this equation">#</a></span>\[\begin{align} -\int_\Omega v \nabla\cdot(\kappa \nabla u) = 0, \forall v \\
 \int_\Omega \nabla v \cdot \kappa \nabla u - \int_{\partial\Omega} v \underbrace{\kappa \nabla u \cdot \mathbf n}_{\text{boundary condition}} = 0
 \end{align}\]</div>
 </section>

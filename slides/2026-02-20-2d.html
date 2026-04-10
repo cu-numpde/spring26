@@ -500,6 +500,164 @@
 
 
 
+<li class="toctree-l2"><a class="reference internal" href="2026-03-02-krylov.html">2026-03-02 Krylov and preconditioning</a></li>
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="2026-03-04-preconditioning.html">2026-03-04 Preconditioning</a></li>
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="2026-03-06-licensing.html">2026-03-06 Licensing and communities</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="2026-03-09-multigrid.html">2026-03-09 Multigrid</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="2026-03-11-amg.html">2026-03-11 AMG</a></li>
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="2026-03-13-galerkin.html">2026-03-13 Galerkin methods</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="2026-03-23-fem.html">2026-03-23 Finite Elements</a></li>
+
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="2026-03-25-applied-fe.html">2026-03-25 Applied Finite Elements</a></li>
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="2026-03-27-solids.html">2026-03-27 Solid Mechanics</a></li>
+
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="2026-03-30-ratel.html">2026-03-30 Ratel for Solid Mechanics</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="2026-04-03-ratel-hands-on.html">2026-04-03 Ratel Hands-on</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="2026-04-08-honee.html">2026-04-06 Honee</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="2026-04-10-finite-volume.html">2026-04-10 Finite Volume</a></li>
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -873,8 +1031,8 @@ document.write(`
 <h1>Extending advection-diffusion to 2D<a class="headerlink" href="#extending-advection-diffusion-to-2d" title="Link to this heading">#</a></h1>
 <section id="dimension">
 <h2>1 dimension<a class="headerlink" href="#dimension" title="Link to this heading">#</a></h2>
-<div class="amsmath math notranslate nohighlight" id="equation-a0c2b815-f7a0-4813-b89c-17de89e90e44">
-<span class="eqno">(19)<a class="headerlink" href="#equation-a0c2b815-f7a0-4813-b89c-17de89e90e44" title="Permalink to this equation">#</a></span>\[\begin{align} u_t + (- \kappa u_x + w u)_x &amp;= f(x) &amp; \text{ on } \Omega &amp;= (a,b) \\
+<div class="amsmath math notranslate nohighlight" id="equation-b5321dce-12ac-4b27-8f3c-64425886a60f">
+<span class="eqno">(19)<a class="headerlink" href="#equation-b5321dce-12ac-4b27-8f3c-64425886a60f" title="Permalink to this equation">#</a></span>\[\begin{align} u_t + (- \kappa u_x + w u)_x &amp;= f(x) &amp; \text{ on } \Omega &amp;= (a,b) \\
 u(a) &amp;= g_D(a) &amp; u'(b) &amp;= g_N(b) \end{align}\]</div>
 <ul class="simple">
 <li><p>Cell Peclet number <span class="math notranslate nohighlight">\(\mathrm{Pe}_h = \frac{\lvert w \rvert h}{\kappa}\)</span></p>
@@ -894,8 +1052,8 @@ u(a) &amp;= g_D(a) &amp; u'(b) &amp;= g_N(b) \end{align}\]</div>
 </section>
 <section id="dimensions">
 <h2>2 dimensions<a class="headerlink" href="#dimensions" title="Link to this heading">#</a></h2>
-<div class="amsmath math notranslate nohighlight" id="equation-a6eb2eaf-7a92-4be3-b5f4-4b773c6866ca">
-<span class="eqno">(20)<a class="headerlink" href="#equation-a6eb2eaf-7a92-4be3-b5f4-4b773c6866ca" title="Permalink to this equation">#</a></span>\[\begin{align} u_t + \nabla\cdot\big(- \kappa \nabla u + \mathbf{w} u \big) &amp;= f(x,y) &amp; \text{ on } \Omega &amp; \subset \mathbb R^2 \\
+<div class="amsmath math notranslate nohighlight" id="equation-daf8e0be-b3fd-4dbd-85b2-9856977bed14">
+<span class="eqno">(20)<a class="headerlink" href="#equation-daf8e0be-b3fd-4dbd-85b2-9856977bed14" title="Permalink to this equation">#</a></span>\[\begin{align} u_t + \nabla\cdot\big(- \kappa \nabla u + \mathbf{w} u \big) &amp;= f(x,y) &amp; \text{ on } \Omega &amp; \subset \mathbb R^2 \\
 u|_{\Gamma_D} &amp;= g_D(x,y) \\
 (-\kappa \nabla u + \mathbf w u) \cdot \hat n|_{\Gamma_N} &amp;= g_N(x,y)
 \end{align}\]</div>
@@ -1986,8 +2144,8 @@ if (typeof require === 'function' && define.amd) {
 </section>
 <section id="ideal-gas">
 <h2>Ideal gas<a class="headerlink" href="#ideal-gas" title="Link to this heading">#</a></h2>
-<div class="amsmath math notranslate nohighlight" id="equation-78bd41db-76b2-4fa4-8830-086a5eb5a0ad">
-<span class="eqno">(21)<a class="headerlink" href="#equation-78bd41db-76b2-4fa4-8830-086a5eb5a0ad" title="Permalink to this equation">#</a></span>\[\begin{align} p &amp;= \rho R T &amp; e &amp;= e(T)
+<div class="amsmath math notranslate nohighlight" id="equation-0b71b1c6-192c-4d71-a0f7-9fd19c600f1b">
+<span class="eqno">(21)<a class="headerlink" href="#equation-0b71b1c6-192c-4d71-a0f7-9fd19c600f1b" title="Permalink to this equation">#</a></span>\[\begin{align} p &amp;= \rho R T &amp; e &amp;= e(T)
 \end{align}\]</div>
 <div class="math notranslate nohighlight">
 \[ p = (\gamma - 1) \rho e \]</div>
