@@ -41,3 +41,5 @@ chapters:
   - file: slides/2026-04-03-ratel-hands-on.ipynb
   - file: slides/2026-04-08-honee.ipynb
   - file: slides/2026-04-10-finite-volume.ipynb
+  - file: slides/2026-04-15-reconstruction.ipynb
+  - file: slides/2026-04-17-systems.ipynb
