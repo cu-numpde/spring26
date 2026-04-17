@@ -958,7 +958,10 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#observations-on-hll-solvers">Observations on HLL solvers</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#schedule-a-time-to-meet-with-me-no-later-than-friday-dec-15">Schedule a time to meet with me (no later than Friday, Dec 15)</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#schedule-a-time-to-meet-with-me">Schedule a time to meet with me</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#either-friday-may-1-after-3pm-or-monday-may-4">Either Friday, May 1 after 3pm or Monday, May 4</a></li>
+</ul>
+</li>
 </ul>
 
             </nav>
@@ -1114,8 +1117,8 @@ document.write(`
 \[ U_t + f(U)_x = 0 \]</div>
 <section id="isentropic-gas-dynamics">
 <h2>Isentropic gas dynamics<a class="headerlink" href="#isentropic-gas-dynamics" title="Link to this heading">#</a></h2>
-<div class="amsmath math notranslate nohighlight" id="equation-1a2693cc-de13-40fb-b90f-8fa59f9aa0bb">
-<span class="eqno">(55)<a class="headerlink" href="#equation-1a2693cc-de13-40fb-b90f-8fa59f9aa0bb" title="Permalink to this equation">#</a></span>\[\begin{align} U &amp;= \begin{bmatrix} \rho \\ \rho u \end{bmatrix} &amp; f(U) &amp;= \begin{bmatrix} \rho u \\ \rho u^2 + p \end{bmatrix} \end{align}\]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-1fbad653-2094-4448-8f77-15b0354148e7">
+<span class="eqno">(55)<a class="headerlink" href="#equation-1fbad653-2094-4448-8f77-15b0354148e7" title="Permalink to this equation">#</a></span>\[\begin{align} U &amp;= \begin{bmatrix} \rho \\ \rho u \end{bmatrix} &amp; f(U) &amp;= \begin{bmatrix} \rho u \\ \rho u^2 + p \end{bmatrix} \end{align}\]</div>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Variable</p></th>
@@ -1155,8 +1158,8 @@ We can compute the eigenvalues and eigenvectors,
 \[ f'(U) = W \Lambda W^{-1} \]</div>
 
 as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-26b55295-c384-4514-b10f-83e975ce9e7f">
-<span class="eqno">(56)<a class="headerlink" href="#equation-26b55295-c384-4514-b10f-83e975ce9e7f" title="Permalink to this equation">#</a></span>\[\begin{align} 
+<div class="amsmath math notranslate nohighlight" id="equation-c6c7cecb-6d8c-4244-931c-157e62bb357c">
+<span class="eqno">(56)<a class="headerlink" href="#equation-c6c7cecb-6d8c-4244-931c-157e62bb357c" title="Permalink to this equation">#</a></span>\[\begin{align} 
 W &amp;= \begin{bmatrix} 1 &amp; 1 \\ u-c &amp; u+c \end{bmatrix} &amp;
 \Lambda &amp;= \begin{bmatrix} u-c &amp;  \\ &amp; u+c \end{bmatrix} .
 \end{align}\]</div>
@@ -1179,8 +1182,8 @@ will be satisfied along with the entropy condition
 where <span class="math notranslate nohighlight">\(\lambda_i(U)\)</span> is the corresponding eigenvalue of the flux Jacobian <span class="math notranslate nohighlight">\(f'(U)\)</span>.
 The inequality in the entropy condition is strict if the wave is genuinely nonlinear.
 For isothermal gas dynamics, the Rankine-Hugoniot condition is</p>
-<div class="amsmath math notranslate nohighlight" id="equation-32f7f836-c7cb-4d83-8aa4-03351b957d4a">
-<span class="eqno">(57)<a class="headerlink" href="#equation-32f7f836-c7cb-4d83-8aa4-03351b957d4a" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-14bfff67-b9b3-4277-9050-05574ba08e4f">
+<span class="eqno">(57)<a class="headerlink" href="#equation-14bfff67-b9b3-4277-9050-05574ba08e4f" title="Permalink to this equation">#</a></span>\[\begin{align}
  (\rho_* - \rho_L) s &amp;= \rho_* u_* - \rho_L u_L \\
  (\rho_* u_* - \rho_L u_L) s &amp;= \Big(\rho_* u_*^2 + c^2 \rho_* \Big) - \Big( \rho_L u_L^2 + c^2 \rho_L \Big)
 \end{align}\]</div>
@@ -1531,8 +1534,8 @@ via
 <section id="hll-harten-lax-and-van-leer">
 <h2>HLL (Harten, Lax, and van Leer)<a class="headerlink" href="#hll-harten-lax-and-van-leer" title="Link to this heading">#</a></h2>
 <p>Assume two shocks with speeds <span class="math notranslate nohighlight">\(s_L\)</span> and <span class="math notranslate nohighlight">\(s_R\)</span>.  These speeds will be estimated and must be at least as fast as the fastest left- and right-traveling waves.  If the wave speeds <span class="math notranslate nohighlight">\(s_L\)</span> and <span class="math notranslate nohighlight">\(s_R\)</span> are given, we have the Rankine-Hugoniot conditions across both shocks,</p>
-<div class="amsmath math notranslate nohighlight" id="equation-ab7dfabc-f36f-4104-bad3-9cce85ceaca2">
-<span class="eqno">(58)<a class="headerlink" href="#equation-ab7dfabc-f36f-4104-bad3-9cce85ceaca2" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-a473f7ba-41d8-4b42-a20f-a57de578c026">
+<span class="eqno">(58)<a class="headerlink" href="#equation-a473f7ba-41d8-4b42-a20f-a57de578c026" title="Permalink to this equation">#</a></span>\[\begin{align}
   s_L (U_* - U_L) &amp;= f(U_*) - f(U_L) \\
   s_R (U_R - U_*) &amp;= f(U_R) - f(U_*) .
 \end{align}\]</div>
@@ -1550,8 +1553,8 @@ We can save an extra evaluation of the flux by using the Rankine-Hugoniot condit
 </p>
 <section id="id1">
 <h3>Isothermal gas dynamics<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
-<div class="amsmath math notranslate nohighlight" id="equation-fb6de299-b60e-4506-9641-26e0a7d3b4cf">
-<span class="eqno">(59)<a class="headerlink" href="#equation-fb6de299-b60e-4506-9641-26e0a7d3b4cf" title="Permalink to this equation">#</a></span>\[\begin{align} s_L &amp;= \min( u_L - c, u_R - c ) \\
+<div class="amsmath math notranslate nohighlight" id="equation-9ed1cdd7-9f56-400a-82d7-59824f4a3a78">
+<span class="eqno">(59)<a class="headerlink" href="#equation-9ed1cdd7-9f56-400a-82d7-59824f4a3a78" title="Permalink to this equation">#</a></span>\[\begin{align} s_L &amp;= \min( u_L - c, u_R - c ) \\
 s_R &amp;= \max(u_L + c, u_R + c)
 \end{align}\]</div>
 </section>
@@ -1575,8 +1578,10 @@ s_R &amp;= \max(u_L + c, u_R + c)
 <li><p>If the wave speed estimates are faster than reality, the method will be more diffusive than an exact Riemann solver.</p></li>
 </ul>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="schedule-a-time-to-meet-with-me-no-later-than-friday-dec-15">
-<h1>Schedule a time to meet with me (no later than Friday, Dec 15)<a class="headerlink" href="#schedule-a-time-to-meet-with-me-no-later-than-friday-dec-15" title="Link to this heading">#</a></h1>
+<section class="tex2jax_ignore mathjax_ignore" id="schedule-a-time-to-meet-with-me">
+<h1>Schedule a time to meet with me<a class="headerlink" href="#schedule-a-time-to-meet-with-me" title="Link to this heading">#</a></h1>
+<section id="either-friday-may-1-after-3pm-or-monday-may-4">
+<h2>Either Friday, May 1 after 3pm or Monday, May 4<a class="headerlink" href="#either-friday-may-1-after-3pm-or-monday-may-4" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>How did your goals evolve and how did you make progress toward those goals?</p></li>
 <li><p>Can you discuss one or more things you’re proud of this semester?</p>
@@ -1592,6 +1597,7 @@ s_R &amp;= \max(u_L + c, u_R + c)
 <li><p>What advice would you give your former self?</p></li>
 <li><p>What grade would you say reflects your growth and quality of work this semester?</p></li>
 </ul>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -1692,7 +1698,10 @@ s_R &amp;= \max(u_L + c, u_R + c)
 </ul>
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#observations-on-hll-solvers">Observations on HLL solvers</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#schedule-a-time-to-meet-with-me-no-later-than-friday-dec-15">Schedule a time to meet with me (no later than Friday, Dec 15)</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#schedule-a-time-to-meet-with-me">Schedule a time to meet with me</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#either-friday-may-1-after-3pm-or-monday-may-4">Either Friday, May 1 after 3pm or Monday, May 4</a></li>
+</ul>
+</li>
 </ul>
 
   </nav></div>
